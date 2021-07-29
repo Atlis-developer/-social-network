@@ -34,7 +34,8 @@ const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        addNewMessageToDialog: state.dialogsPage.addNewMessageToDialog
+        addNewMessageToDialog: state.dialogsPage.addNewMessageToDialog,
+        isAuth: state.auth.isAuth
     }
 }
 
