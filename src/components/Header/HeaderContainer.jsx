@@ -7,13 +7,7 @@ import { headerAPI } from '../../api/api';
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        headerAPI.getHeaders()
-        .then(data => {  
-         
-        if (data.resultCode === 0){
-        let {id, email, login} = data.data;
-        this.props.setUserData (id, email, login)
-        }})
+        this.props.setUserData();
     }
     render(){
         return <Header {...this.props}/>

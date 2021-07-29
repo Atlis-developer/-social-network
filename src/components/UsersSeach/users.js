@@ -3,8 +3,7 @@ import s from './usersSeach.module.css'
 import { NavLink } from 'react-router-dom';
 import Ava from '../../assets/image/ava.jpg'
 import Preloader from './Preloader';
-import * as axios from 'axios';
-import { usersAPI } from '../../api/api';
+
 
 const Users = (props) => {
     
@@ -37,23 +36,10 @@ const Users = (props) => {
                     <div>
                         {u.friend ?
                             <button disabled={props.isProgress.some(id => id === u.id)} onClick={() => {
-                                
-                                props.funcProgress(true, u.id)
-                                usersAPI.unfollowFriends(u.id).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.unFollow(u.id)
-                                    }
-                                    props.funcProgress(false, u.id)
-                                })
+                                props.unFollow(u.id);
                             }}>Удалить</button> :
                             <button disabled={props.isProgress.some(id => id === u.id)} onClick={() => {
-                                
-                                usersAPI.followFriends(u.id).then(response => {
-                                    
-                                    if (response.data.resultCode === 0) {
-                                        props.follow(u.id)
-                                    }props.funcProgress(false, u.id)
-                                })
+                                props.follow(u.id);
                             }}>Добавить</button>}
                     </div>
 

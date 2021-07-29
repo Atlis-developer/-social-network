@@ -1,7 +1,9 @@
+import { profileAPI } from '../api/api';
+
 export const addPostActionCreate = () => ({ type: 'ADD-POST' });
 export const updatePostMessageActionCreate = (text) =>
     ({ type: 'UPDATE-POST-MESSAGE', newText: text });
-export const setProfileUsers = (profile) =>({ type: 'SET-PROFILE-USERS', profile });
+export const setProfileUsersConfirm = (profile) =>({ type: 'SET-PROFILE-USERS', profile });
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_MESSAGE = 'UPDATE-POST-MESSAGE';
@@ -41,6 +43,16 @@ export const profileReducer = (state = defaultState, action) => {
         }
         default:
             return state;
+    }
+}
+
+export const setProfileUsers = (userID) =>{
+    return (dispatch)=>{
+        if (!userID){
+            userID = 10
+        }
+        profileAPI.getProfiles(userID).then(data => {
+            dispatch(setProfileUsersConfirm(data))})
     }
 }
 

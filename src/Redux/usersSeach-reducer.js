@@ -1,8 +1,8 @@
 import { usersAPI } from '../api/api';
 
 
-export const follow = (userId) => ({ type: 'FOLLOW', userId: userId });
-export const unFollow = (userId) =>({ type: 'UNFOLLOW', userId: userId })
+export const followConfirm = (userId) => ({ type: 'FOLLOW', userId: userId });
+export const unFollowConfirm = (userId) =>({ type: 'UNFOLLOW', userId: userId })
 export const setUsers = (users) =>({ type: 'SET-USERS', users: users})
 export const currentPage = (page) =>({type: 'SET-CURRENT-PAGE', currentPage:page})
 export const totalPage = (pages) =>({type: 'TOTAL-PAGE', allPagesCount:pages})
@@ -98,6 +98,28 @@ export const userThunkCreator = (page, pageSize) =>{
     }
 }
 
+export const follow = (userId) =>{
+    return (dispatch) =>{
+        dispatch(funcProgress(true, userId));
+        usersAPI.followFriends(userId).then(response => {              
+            if (response.data.resultCode === 0) {
+                dispatch(followConfirm(userId));
+            }dispatch(funcProgress(false,userId));
+        })
+    }
+}
+
+export const unFollow = (userId) =>{
+    return (dispatch) =>{
+        dispatch(funcProgress(true, userId));
+        usersAPI.unFollowFriends(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unFollowConfirm(userId));
+            }
+            dispatch(funcProgress(false, userId));
+        })
+    }
+}
 
 /*export const profileReducer = (state = defaultState, action) => {
     switch (action.type) {

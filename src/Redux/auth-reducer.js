@@ -1,4 +1,7 @@
-export const setUserData = (id, email, login) => ({ type: 'SET_USER_DATA', data: {id, email, login} });
+import { headerAPI } from '../api/api';
+
+
+export const setUserDataConfirm = (id, email, login) => ({ type: 'SET_USER_DATA', data: {id, email, login} });
 
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -12,7 +15,7 @@ let initialState = {
     isAuth: false
 }
 
-const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
    
     switch (action.type) {
         case SET_USER_DATA: 
@@ -26,4 +29,13 @@ const authReducer = (state = initialState, action) => {
             return state;
     }
 }
-export default authReducer
+
+export const setUserData = () =>{
+    return (dispatch)=>{
+        headerAPI.getHeaders().then(data => {
+        if (data.resultCode === 0){
+        let {id, email, login} = data.data;
+        dispatch(setUserDataConfirm (id, email, login));
+        }})
+    }
+}

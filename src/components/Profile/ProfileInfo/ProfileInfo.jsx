@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from '../../UsersSeach/Preloader'
+import Ava from '../../../assets/image/ava.jpg'
 
 const Profileinfo = (props) => {
     if (!props.profile) {
@@ -14,7 +15,9 @@ const Profileinfo = (props) => {
             </div>
             <span className={s.profile}>
                 <div className={s.avatar}>
-                    <img src={props.profile.photos.large} />
+                    {props.profile.photos.large!=null ?
+                        <img src={props.profile.photos.large}/> :
+                        <img src={Ava}/>}
                 </div>
                 <div className={s.contact}>
                     <p>Facebook: {props.profile.contacts.facebook}</p>

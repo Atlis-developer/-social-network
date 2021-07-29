@@ -19,7 +19,7 @@ export const usersAPI = {
     followFriends(userId) {
         return instanse.post(`follow/${userId}`)
     },
-    unfollowFriends(userId){
+    unFollowFriends(userId){
         return instanse.delete(`follow/${userId}`)
     }
 }

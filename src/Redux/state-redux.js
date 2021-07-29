@@ -3,7 +3,7 @@ import { profileReducer } from "./profile-reducer"
 import { dialogsReducer } from "./dialogs-reducer"
 import { navbarReducer } from "./navbar-reducer"
 import { usersReducer } from "./usersSeach-reducer";
-import authReducer from "./auth-reducer";
+import { authReducer } from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
 import { applyMiddleware } from "redux"
 
