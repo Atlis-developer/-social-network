@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { follow,  unFollow, currentPage, funcProgress, userThunkCreator } from '../../Redux/usersSeach-reducer';
 import Users from './users';
@@ -40,9 +41,8 @@ const mapStateToProps = (state) => {
 
 let AuthRedirect = withAuthRedirect (UsersContainers)
 
-export default connect(mapStateToProps, { follow, unFollow, currentPage, 
- funcProgress, userThunkCreator })(AuthRedirect)
-
+export default compose(connect(mapStateToProps, { follow, unFollow, currentPage, 
+    funcProgress, userThunkCreator }),withAuthRedirect) (UsersContainers)
 /*this.props.funcFetching(true)
         usersAPI.getUsers(this.page, this.props.usersPage.pageSize).then(data => {
             this.props.setUsers(data.items)
