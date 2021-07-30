@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { follow,  unFollow, currentPage, funcProgress, userThunkCreator } from '../../Redux/usersSeach-reducer';
 import Users from './users';
+
+
+
+
 class UsersContainers extends React.Component {
 
     componentDidMount() {
@@ -27,15 +32,16 @@ class UsersContainers extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
-        usersPage: state.usersPage
+        usersPage: state.usersPage,
+        
     }
-}
+};
 
-;
 
+let AuthRedirect = withAuthRedirect (UsersContainers)
 
 export default connect(mapStateToProps, { follow, unFollow, currentPage, 
- funcProgress, userThunkCreator })(UsersContainers)
+ funcProgress, userThunkCreator })(AuthRedirect)
 
 /*this.props.funcFetching(true)
         usersAPI.getUsers(this.page, this.props.usersPage.pageSize).then(data => {
