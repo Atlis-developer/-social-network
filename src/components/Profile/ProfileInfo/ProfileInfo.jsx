@@ -8,13 +8,14 @@ const Profileinfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-
     return (
+        
         <div className={s.profileInfo}>
             <div className={s.backImage}>
                 <img src='http://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg' />
             </div>
-            <StatusProfile statusText = {'Hello world'}/>
+            <StatusProfile status={props.status}
+            updateUserStatus={props.updateUserStatus}/>
             <span className={s.profile}>
                 <div className={s.avatar}>
                     {props.profile.photos.large!=null ?

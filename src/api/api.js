@@ -30,6 +30,15 @@ export const profileAPI = {
             then(response => {
                 return response.data
             })
+    },
+    getUserStatus(userID){
+        return instanse.get(`profile/status/${userID}`).
+        then(response =>{
+            return response.data
+        })
+    },
+    updateUserStatus(status){
+        return instanse.put('/profile/status', {status: status})
     }
 }
 
