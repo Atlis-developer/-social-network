@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 };
 
 
-let AuthRedirect = withAuthRedirect (UsersContainers)
+
 
 export default compose(connect(mapStateToProps, { follow, unFollow, currentPage, 
     funcProgress, userThunkCreator }),withAuthRedirect) (UsersContainers)

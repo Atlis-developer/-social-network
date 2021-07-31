@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from '../../UsersSeach/Preloader'
 import Ava from '../../../assets/image/ava.jpg'
+import StatusProfile from './StatusProfile/StatusProfile'
 
 const Profileinfo = (props) => {
     if (!props.profile) {
@@ -13,6 +14,7 @@ const Profileinfo = (props) => {
             <div className={s.backImage}>
                 <img src='http://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg' />
             </div>
+            <StatusProfile statusText = {'Hello world'}/>
             <span className={s.profile}>
                 <div className={s.avatar}>
                     {props.profile.photos.large!=null ?
@@ -31,7 +33,7 @@ const Profileinfo = (props) => {
                 </div>
                 <div className={s.information}>
                     <p>Имя: {props.profile.fullName}</p>
-                    <p>Статус: {props.profile.lookingForAJobDescription}</p>
+                    <p>Работа: {props.profile.lookingForAJobDescription}</p>
                     {props.profile.lookingForAJob?<p>Ищу работу</p>:
                     <p>Работаю</p>}
                 </div>
