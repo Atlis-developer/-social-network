@@ -1,6 +1,5 @@
-export const addMessageToMessages = () => ({ type: 'ADD-MESSAGE-TO-MESSAGES' });
-export const addNewMessage = (newMessage) =>
-    ({ type: 'ADD-NEW-MESSAGE', message: newMessage });
+export const addMessageToMessages = (newMessage) => ({ type: 'ADD-MESSAGE-TO-MESSAGES', newMessage });
+
 const ADD_MESSAGE_TO_MESSAGES = 'ADD-MESSAGE-TO-MESSAGES';
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
 
@@ -26,7 +25,6 @@ let defaultState = {
         { ava: <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lEZyYBzqDkDbdnmIEpjn6WQdmQJ-q4AGvsY77GTsB_mac3KisFBfYjEEz4t_Mnx9Ehc&usqp=CAU' /> },
         { ava: <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO0uvA1f5EcbvXiN4Cfk-ASQVuViSrFIkT2q5BFxsM0qmTGSFvCnsV2cK0qZwOlGn9_6s&usqp=CAU' /> },
     ],
-    addNewMessageToDialog: '',
 }
 
 export const dialogsReducer = (state = defaultState, action) => {
@@ -34,19 +32,15 @@ export const dialogsReducer = (state = defaultState, action) => {
         case ADD_MESSAGE_TO_MESSAGES:
             return {
                 ...state,
-                messages: [...state.messages, { message: state.addNewMessageToDialog }],
-                addNewMessageToDialog: '',
+                messages: [...state.messages, { message: action.newMessage }],
             };
-        case ADD_NEW_MESSAGE: {
-            return {
-                ...state,
-                addNewMessageToDialog: action.message
-            };
-        };
         default:
             return state;
     };
 }
+
+/*export const addNewMessage = (newMessage) =>
+    ({ type: 'ADD-NEW-MESSAGE', message: newMessage });*/
 
 /*export const dialogsReducer = (state = defaultState, action) => {
     switch (action.type) {

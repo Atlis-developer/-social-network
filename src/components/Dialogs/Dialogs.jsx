@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import s from './Dialogs.module.css'
+import DialogsReduxForm from './DialogsForm';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 
@@ -9,13 +9,8 @@ const Dialogs = (props) =>{
 let DialogNew = props.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
 let MessagesNew = props.messages.map(m => <Message message={m.message} key={m.id} />)
 
-let onSendMessage = () =>{
-    props.sendMessage();
-}
-
-let onChangeNewMessage = (e) =>{
-    let newMessage = e.target.value
-    props.changeNewMessage(newMessage);
+let onSendMessage = (value) =>{
+    props.sendMessage (value.newMessage)
 }
 
 return (
@@ -28,8 +23,7 @@ return (
             {MessagesNew}
             </div>
             <div className={s.addMessage}>
-                <textarea value={props.addNewMessageToDialog} onChange={onChangeNewMessage}></textarea>
-                <button onClick={onSendMessage}>Add message</button>
+               <DialogsReduxForm onSubmit={onSendMessage}/>
             </div>
         </div>
     )

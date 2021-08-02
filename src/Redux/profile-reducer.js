@@ -1,8 +1,6 @@
 import { profileAPI } from '../api/api';
 
-export const addPostActionCreate = () => ({ type: 'ADD-POST' });
-export const updatePostMessageActionCreate = (text) =>
-    ({ type: 'UPDATE-POST-MESSAGE', newText: text });
+export const addPostActionCreate = (newPost) => ({ type: 'ADD-POST', newPost });
 export const setProfileUsersConfirm = (profile) =>({ type: 'SET-PROFILE-USERS', profile });
 export const getUserStatusActionCreate = (status) =>({ type: 'GET-USER-STATUS', status})
 export const updateUserStatusActionCreate = (status) =>({ type: 'UPDATE-USER-STATUS', status})
@@ -20,7 +18,6 @@ let defaultState = {
         { message: 'Hello Ukraine!', like: '50' },
         { message: 'Fuck you Russia!', like: '242' },
     ],
-    newPostMessage: '',
     profile: null,
     status: ''
 }
@@ -30,14 +27,7 @@ export const profileReducer = (state = defaultState, action) => {
         case ADD_POST: {
             return {
                 ...state,
-                posts: [...state.posts, { message: state.newPostMessage, like: 0 }],
-                newPostMessage: ''
-            };
-        }
-        case UPDATE_POST_MESSAGE: {
-            return {
-                ...state,
-                newPostMessage: action.newText
+                posts: [...state.posts, { message: action.newPost, like: 0 }],
             };
         }
         case SET_PROFILE_USERS: {

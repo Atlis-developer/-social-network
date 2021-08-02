@@ -34,12 +34,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToPops = (dispatch) => {
     return {
-        onSendNewPost: () => {
-            dispatch(addPostActionCreate())
-        },
-        onPostChange: (text) => {
-            let action = updatePostMessageActionCreate(text);
-            dispatch(action)
+        onSendNewPost: (newPost) => {
+            dispatch(addPostActionCreate(newPost))
         }
     }
 }

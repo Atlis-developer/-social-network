@@ -26,8 +26,7 @@ return <Dialogs changeNewMessage = {changeNewMessage}
 
 const mapDispatchToPops = (dispatch) => {
     return {
-        changeNewMessage: (newMessage) => { dispatch(addNewMessage(newMessage)) },
-        sendMessage: () => { dispatch(addMessageToMessages()) },
+        sendMessage: (newMessage) => { dispatch(addMessageToMessages(newMessage)) },
     }
 }
 
@@ -36,8 +35,6 @@ const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        addNewMessageToDialog: state.dialogsPage.addNewMessageToDialog,
-
     }
 }
 
