@@ -1,0 +1,7 @@
+.errorSpan {
+    color: red;
+}
+
+.form .error{
+    border: red solid 2px
+}
