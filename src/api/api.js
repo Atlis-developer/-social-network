@@ -19,7 +19,7 @@ export const usersAPI = {
     followFriends(userId) {
         return instanse.post(`follow/${userId}`)
     },
-    unFollowFriends(userId){
+    unFollowFriends(userId) {
         return instanse.delete(`follow/${userId}`)
     }
 }
@@ -31,14 +31,14 @@ export const profileAPI = {
                 return response.data
             })
     },
-    getUserStatus(userID){
+    getUserStatus(userID) {
         return instanse.get(`profile/status/${userID}`).
-        then(response =>{
-            return response.data
-        })
+            then(response => {
+                return response.data
+            })
     },
-    updateUserStatus(status){
-        return instanse.put('/profile/status', {status: status})
+    updateUserStatus(status) {
+        return instanse.put('/profile/status', { status: status })
     }
 }
 
@@ -48,6 +48,13 @@ export const headerAPI = {
             then(response => {
                 return response.data
             })
+    },
+    loginControl(email, password, rememberMe=true) {
+        
+        return instanse.post('auth/login', { email, password, rememberMe })
+    },
+    loginOut() {
+        return instanse.delete('auth/login')
     }
 }
 
