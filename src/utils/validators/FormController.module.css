@@ -5,3 +5,8 @@
 .form .error{
     border: red solid 2px
 }
+
+.error{
+    color: red;
+    
+}

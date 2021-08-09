@@ -6,7 +6,6 @@ export const getUserStatusActionCreate = (status) =>({ type: 'GET-USER-STATUS', 
 export const updateUserStatusActionCreate = (status) =>({ type: 'UPDATE-USER-STATUS', status})
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_POST_MESSAGE = 'UPDATE-POST-MESSAGE';
 const SET_PROFILE_USERS = 'SET-PROFILE-USERS';
 const GET_USER_STATUS = 'GET-USER-STATUS';
 const UPDATE_USER_STATUS = 'UPDATE-USER-STATUS';

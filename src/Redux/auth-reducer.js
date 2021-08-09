@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form';
 import { headerAPI } from '../api/api';
 
 
@@ -44,11 +45,13 @@ export const loginControl = (email, password, rememberMe) =>{
     
     return (dispatch)=>{
         headerAPI.loginControl(email, password, rememberMe).then(response => {
-            
         if (response.data.resultCode === 0){
-            
         dispatch(setUserData ());
-        }})
+        } else {
+            let message = response.data.messages.length > 0 ? response.data.messages [0] : 'Some error'
+            dispatch (stopSubmit('login', {_error: message}))
+        }
+    })
     }
 };
 
