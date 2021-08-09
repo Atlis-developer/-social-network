@@ -5,7 +5,7 @@ import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { addMessageToMessages } from '../../Redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { withRouter } from 'react-router-dom';
-import { getDialogs, getMessages } from '../../Redux/dialogs-reselect';
+import { getDialogs, getMessages } from '../../Redux/Reselect/dialogs-reselect';
 
 
 const mapDispatchToPops = (dispatch) => {

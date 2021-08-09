@@ -5,7 +5,7 @@ import {setProfileUsers, getUserStatus, updateUserStatus} from './../../Redux/pr
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
-import { getProfile, getStatus } from '../../Redux/profile-reselect';
+import { getProfile, getStatus } from '../../Redux/Reselect/profile-reselect';
 
 
 class ProfileContainer extends React.Component {

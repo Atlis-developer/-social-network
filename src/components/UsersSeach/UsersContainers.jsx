@@ -5,7 +5,7 @@ import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { follow,  unFollow, currentPage, funcProgress, userThunkCreator } from '../../Redux/usersSeach-reducer';
 import Users from './users';
 import { withRouter } from 'react-router-dom';
-import { getUsersPage } from '../../Redux/users-reselect';
+import { getUsersPage } from '../../Redux/Reselect/users-reselect';
 
 
 
