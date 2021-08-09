@@ -30,15 +30,15 @@ export const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserData = () =>{
-    
-    return (dispatch)=>{
-        headerAPI.getHeaders().then(data => {
+export const setUserData = () => (dispatch) =>{
+    debugger
+    return headerAPI.getHeaders().then(data => {
         if (data.resultCode === 0){
+            debugger
         let {id, email, login} = data.data;
         dispatch(setUserDataConfirm (id, email, login, true));
         }})
-    }
+    
 };
 
 export const loginControl = (email, password, rememberMe) =>{

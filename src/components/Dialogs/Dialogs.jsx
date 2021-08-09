@@ -25,8 +25,12 @@ return (
             <div className={s.addMessage}>
                <DialogsReduxForm onSubmit={onSendMessage}/>
             </div>
+
         </div>
     )
 }
+
+
+
 
 export default Dialogs

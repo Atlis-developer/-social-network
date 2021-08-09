@@ -5,6 +5,7 @@ import {setProfileUsers, getUserStatus, updateUserStatus} from './../../Redux/pr
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
+import { getProfile, getStatus } from '../../Redux/profile-reselect';
 
 
 class ProfileContainer extends React.Component {
@@ -15,7 +16,6 @@ class ProfileContainer extends React.Component {
         this.props.setProfileUsers(userID)
         this.props.getUserStatus (userID)}
     render() {
-
         return <Profile {...this.props}
         profile={this.props.profile}
         status={this.props.status}
@@ -26,8 +26,8 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state)=>{
 
     return{
-        profile:state.profilePage.profile,
-        status:state.profilePage.status
+        profile: getProfile(state),
+        status: getStatus(state)
     }
 }
 
