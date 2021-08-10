@@ -87,8 +87,7 @@ export const usersReducer = (state = defaultState, action) => {
 };
 
 export const userThunkCreator = (page, pageSize) =>{
-    return (dispatch) =>{
-        
+    return (dispatch) =>{ 
         dispatch(funcFetching(true));
         usersAPI.getUsers(page, pageSize).then(data => {
             dispatch(setUsers(data.items));

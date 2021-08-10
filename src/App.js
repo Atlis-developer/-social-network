@@ -2,8 +2,8 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Route } from 'react-router-dom';
 import DialogsContainers from './components/Dialogs/DialogsContainers';
-import UsersContainers from './components/UsersSeach/UsersContainers';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import UsersContainersHooks from './components/UsersSeach/UsersContainersHooks';
+import ProfileContainerHooks from './components/Profile/ProfileContainerHooks';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/login';
 import React from 'react';
@@ -19,7 +19,6 @@ class App extends React.Component {
   }
 
   render() {
-    debugger
     if (!this.props.initialization) { 
       return <div><Preloader /></div>
     }
@@ -30,11 +29,11 @@ class App extends React.Component {
           <Navbar />
           <div className='app-wrapper-content'>
             <Route path='/profile/:userId?'
-              render={() => <ProfileContainer />} />
+              render={() => <ProfileContainerHooks />} />
             <Route path='/dialogs'
               render={() => <DialogsContainers />} />
             <Route path='/users'
-              render={() => <UsersContainers />} />
+              render={() => <UsersContainersHooks />} />
             <Route path='/login'
               render={() => <LoginPage />} />
           </div>
