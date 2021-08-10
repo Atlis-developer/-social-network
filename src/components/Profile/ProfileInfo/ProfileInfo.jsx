@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from '../../UsersSeach/Preloader'
 import Ava from '../../../assets/image/ava.jpg'
-import StatusProfile from './StatusProfile/StatusProfile'
+import StatusProfileHook from './StatusProfile/StatusProfileHook'
 
 const Profileinfo = (props) => {
     if (!props.profile) {
@@ -14,7 +14,7 @@ const Profileinfo = (props) => {
             <div className={s.backImage}>
                 <img src='http://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg' />
             </div>
-            <StatusProfile status={props.status}
+            <StatusProfileHook status={props.status}
             updateUserStatus={props.updateUserStatus}/>
             <span className={s.profile}>
                 <div className={s.avatar}>
