@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
 import s from './Dialogs.module.css'
 
 
@@ -16,7 +16,10 @@ const addDialogsForm = (props) => {
     )
 }
 
-const DialogsReduxForm = reduxForm({form:'addDialogs'})(addDialogsForm)
+const afterSubmit = (result, dispatch) =>
+  dispatch(reset('addDialogs'));
+
+const DialogsReduxForm = reduxForm({form:'addDialogs', onSubmitSuccess: afterSubmit})(addDialogsForm)
 
 
 

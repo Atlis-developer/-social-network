@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
 import { Element } from '../../../utils/validators/FormController';
 import { maxLength, required } from '../../../utils/validators/validators';
 
@@ -21,7 +21,10 @@ const Textarea = Element ('textarea');
     )
 }
 
-const MyPostReduxForm = reduxForm({ form: 'addPost' })(MyPostForm)
+const afterSubmit = (result, dispatch) =>
+  dispatch(reset('addPost'));
+
+const MyPostReduxForm = reduxForm({ form: 'addPost', onSubmitSuccess: afterSubmit})(MyPostForm)
 
 export default MyPostReduxForm
 

@@ -3,6 +3,26 @@ import { connect } from 'react-redux';
 import { addPostActionCreate, updatePostMessageActionCreate } from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 
+
+
+let mapStateToProps = (state) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostMessage: state.profilePage.newPostMessage,
+    }
+}
+
+let mapDispatchToPops = (dispatch) => {
+    return {
+        onSendNewPost: (newPost) => {
+            dispatch(addPostActionCreate(newPost))
+        }
+    }
+}
+
+export const MyPostsContainers = connect(mapStateToProps, mapDispatchToPops)(MyPosts);
+
+
 /*export const MyPostsContainers = (props) =>{
     
     let state = props.store.getState();
@@ -24,20 +44,3 @@ let onPostChange = (text) =>{
                  newPostMessage = {state.profilePage.newPostMessage}/>
     )
 }*/
-
-let mapStateToProps = (state) => {
-    return {
-        posts: state.profilePage.posts,
-        newPostMessage: state.profilePage.newPostMessage,
-    }
-}
-
-let mapDispatchToPops = (dispatch) => {
-    return {
-        onSendNewPost: (newPost) => {
-            dispatch(addPostActionCreate(newPost))
-        }
-    }
-}
-
-export const MyPostsContainers = connect(mapStateToProps, mapDispatchToPops)(MyPosts);

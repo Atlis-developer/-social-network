@@ -12,14 +12,14 @@ import { useEffect } from 'react';
 const ProfileContainerHooks = (props) => {
     let userID = props.match.params.userId;
 
-    useEffect((userID) => {
+    useEffect(() => {
         props.setProfileUsers(userID);
     }, [])
 
-    useEffect((userID) => {
+    useEffect(() => {
         props.getUserStatus(userID);
     }, [])
-
+debugger
     return <Profile {...props}
         profile={props.profile}
         status={props.status}
@@ -29,7 +29,7 @@ const ProfileContainerHooks = (props) => {
 }
 
 let mapStateToProps = (state) => {
-
+debugger
     return {
         profile: getProfile(state),
         status: getStatus(state)

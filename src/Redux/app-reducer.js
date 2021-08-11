@@ -26,13 +26,13 @@ export const appReducer = (state = initializationState, action) => {
 }
 
 export const initializationData = () => {
-    debugger
+   
     return (dispatch) => {
         let promise = dispatch(setUserData());
-        debugger
+       
         Promise.all([promise])
             .then(() => {
-                debugger
+               
                 dispatch(initializationConfirm());
             });
     }
