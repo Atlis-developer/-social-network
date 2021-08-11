@@ -1,21 +1,21 @@
 import { profileAPI } from '../api/api';
 
-export const addPostActionCreate = (newPost) => ({ type: 'ADD-POST', newPost });
-export const setProfileUsersConfirm = (profile) =>({ type: 'SET-PROFILE-USERS', profile });
-export const getUserStatusActionCreate = (status) =>({ type: 'GET-USER-STATUS', status})
-export const updateUserStatusActionCreate = (status) =>({ type: 'UPDATE-USER-STATUS', status})
+export const addPostActionCreate = (newPost) => ({ type: 'profile-reducer/ADD-POST', newPost });
+export const setProfileUsersConfirm = (profile) =>({ type: 'profile-reducer/SET-PROFILE-USERS', profile });
+export const getUserStatusActionCreate = (status) =>({ type: 'profile-reducer/GET-USER-STATUS', status})
+export const updateUserStatusActionCreate = (status) =>({ type: 'profile-reducer/UPDATE-USER-STATUS', status})
 
-const ADD_POST = 'ADD-POST';
-const SET_PROFILE_USERS = 'SET-PROFILE-USERS';
-const GET_USER_STATUS = 'GET-USER-STATUS';
-const UPDATE_USER_STATUS = 'UPDATE-USER-STATUS';
+const ADD_POST = 'profile-reducer/ADD-POST';
+const SET_PROFILE_USERS = 'profile-reducer/SET-PROFILE-USERS';
+const GET_USER_STATUS = 'profile-reducer/GET-USER-STATUS';
+const UPDATE_USER_STATUS = 'profile-reducer/UPDATE-USER-STATUS';
 
 let defaultState = {
     posts: [
         { message: 'Hello world!', like: '10' },
         { message: 'I want to learn ReactJS', like: '42' },
         { message: 'Hello Ukraine!', like: '50' },
-        { message: 'Fuck you Russia!', like: '242' },
+        { message: 'JavaScript is cool!', like: '242' },
     ],
     profile: null,
     status: ''
@@ -52,7 +52,28 @@ export const profileReducer = (state = defaultState, action) => {
     }
 }
 
-export const setProfileUsers = (userID) =>{
+export const setProfileUsers = (userID) => async (dispatch) => {
+    if (!userID) {
+        userID = 18603
+    }
+    let response = await profileAPI.getProfiles(userID)
+    dispatch(setProfileUsersConfirm(response.data))
+}
+
+export const getUserStatus = (userID) => async (dispatch) => {
+    let response = await profileAPI.getUserStatus(userID)
+    dispatch(getUserStatusActionCreate(response.data))
+
+}
+
+export const updateUserStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateUserStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(updateUserStatusActionCreate(status))
+    }
+}
+
+/*export const setProfileUsers = (userID) =>{
     return (dispatch)=>{
         if (!userID){
             userID = 18603
@@ -76,26 +97,5 @@ export const updateUserStatus = (status) =>{
                 dispatch (updateUserStatusActionCreate(status))
             }
         })
-    }
-}
-
-/*export const profileReducer = (state = defaultState, action) => {
-    switch (action.type) {
-        case ADD_POST:{
-            let stateCopy = {...state};
-            stateCopy.posts = [...state.posts]
-            let newPost = {
-                message: state.newPostMessage,
-                like: 0
-            };
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostMessage = '';
-            return stateCopy;}
-        case UPDATE_POST_MESSAGE:{
-            let stateCopy = {...state};
-            stateCopy.newPostMessage = action.newText;
-            return stateCopy;}
-        default:
-            return state;
     }
 }*/

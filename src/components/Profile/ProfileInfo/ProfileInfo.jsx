@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import Preloader from '../../UsersSeach/Preloader'
+import Preloader from '../../../utils/Preloader'
 import Ava from '../../../assets/image/ava.jpg'
 import StatusProfileHook from './StatusProfile/StatusProfileHook'
 
@@ -8,20 +8,15 @@ const Profileinfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-    debugger
     return (
-        
         <div className={s.profileInfo}>
-            <div className={s.backImage}>
-                <img src='http://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg' />
-            </div>
             <StatusProfileHook status={props.status}
-            updateUserStatus={props.updateUserStatus}/>
+                updateUserStatus={props.updateUserStatus} />
             <span className={s.profile}>
                 <div className={s.avatar}>
-                    {props.profile.photos.large!=null ?
-                        <img src={props.profile.photos.large}/> :
-                        <img src={Ava}/>}
+                    {props.profile.photos.large != null ?
+                        <img src={props.profile.photos.large} /> :
+                        <img src={Ava} />}
                 </div>
                 <div className={s.contact}>
                     <p>Facebook: {props.profile.contacts.facebook}</p>
@@ -36,8 +31,8 @@ const Profileinfo = (props) => {
                 <div className={s.information}>
                     <p>Имя: {props.profile.fullName}</p>
                     <p>Работа: {props.profile.lookingForAJobDescription}</p>
-                    {props.profile.lookingForAJob?<p>Ищу работу</p>:
-                    <p>Работаю</p>}
+                    {props.profile.lookingForAJob ? <p>Ищу работу</p> :
+                        <p>Работаю</p>}
                 </div>
             </span>
         </div>)

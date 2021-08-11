@@ -9,7 +9,7 @@ import LoginPage from './components/Login/login';
 import React from 'react';
 import { connect } from 'react-redux';
 import { initializationData } from './Redux/app-reducer';
-import Preloader from './components/UsersSeach/Preloader';
+import Preloader from './utils/Preloader';
 
 
 class App extends React.Component {

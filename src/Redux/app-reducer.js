@@ -1,9 +1,9 @@
 import { setUserData } from './auth-reducer'
 
-export const initializationConfirm = () => ({ type: 'INITIALIZATION_SUCCESS' });
+export const initializationConfirm = () => ({ type: 'app-reducer/INITIALIZATION_SUCCESS' });
 
 
-const INITIALIZATION_SUCCESS = 'INITIALIZATION_SUCCESS';
+const INITIALIZATION_SUCCESS = 'app-reducer/INITIALIZATION_SUCCESS';
 
 
 

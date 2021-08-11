@@ -1,19 +1,24 @@
 import React from 'react';
-import {MyPostsContainers} from './My posts/MyPostsContainers';
+import { MyPostsContainers } from './My posts/MyPostsContainers';
 import s from './Profile.module.css'
 import Profileinfo from './ProfileInfo/ProfileInfo';
+import Ava_Big from '../../assets/image/ava_big.jpg'
 
-const Profile = (props) =>{
-    
-    return(
-        <div className={s.content}>            
-       <div><Profileinfo profile={props.profile}
-       status={props.status}
-       updateUserStatus={props.updateUserStatus}/></div>            
-       <div><MyPostsContainers/></div>
+
+const Profile = (props) => {
+
+    return (
+        <div className={s.content}>
+            <div className={s.backImage}>
+                <img src={Ava_Big} />
+            </div>
+            <Profileinfo profile={props.profile}
+                status={props.status}
+                updateUserStatus={props.updateUserStatus} />
+            <MyPostsContainers />
         </div>
-           
+
     )
 }
- 
+
 export default Profile

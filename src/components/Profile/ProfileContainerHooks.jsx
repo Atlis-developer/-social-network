@@ -19,7 +19,7 @@ const ProfileContainerHooks = (props) => {
     useEffect(() => {
         props.getUserStatus(userID);
     }, [])
-debugger
+
     return <Profile {...props}
         profile={props.profile}
         status={props.status}
@@ -29,7 +29,7 @@ debugger
 }
 
 let mapStateToProps = (state) => {
-debugger
+
     return {
         profile: getProfile(state),
         status: getStatus(state)

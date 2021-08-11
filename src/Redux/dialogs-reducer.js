@@ -1,6 +1,6 @@
-export const addMessageToMessages = (newMessage) => ({ type: 'ADD-MESSAGE-TO-MESSAGES', newMessage });
+export const addMessageToMessages = (newMessage) => ({ type: 'dialogs-reducer/ADD-MESSAGE-TO-MESSAGES', newMessage });
 
-const ADD_MESSAGE_TO_MESSAGES = 'ADD-MESSAGE-TO-MESSAGES';
+const ADD_MESSAGE_TO_MESSAGES = 'dialogs-reducer/ADD-MESSAGE-TO-MESSAGES';
 
 let defaultState = {
     messages: [

@@ -13,7 +13,7 @@ export const usersAPI = {
     getUsers(numberPage, pageSize) {
         return instanse.get(`users?page=${numberPage}&count=${pageSize}`).
             then(response => {
-                return response.data
+                return response
             })
     },
     followFriends(userId) {
@@ -28,13 +28,13 @@ export const profileAPI = {
     getProfiles(userID) {
         return instanse.get(`profile/${userID}`).
             then(response => {
-                return response.data
+                return response
             })
     },
     getUserStatus(userID) {
         return instanse.get(`profile/status/${userID}`).
             then(response => {
-                return response.data
+                return response
             })
     },
     updateUserStatus(status) {
@@ -46,7 +46,7 @@ export const headerAPI = {
     getHeaders() {
         return instanse.get(`auth/me`).
             then(response => {
-                return response.data
+                return response
             })
     },
     loginControl(email, password, rememberMe=true) {
