@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import DialogsReduxForm from './DialogsForm';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
-import { useState } from 'react';
+
 
 const Dialogs = (props) => {
 
@@ -16,12 +16,14 @@ const Dialogs = (props) => {
 
     return (
 
-        <div className={s.dialogs}>
+        <div className={s.allDialogs}>
+            <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 {DialogNew}
             </div>
             <div className={s.messages}>
                 {MessagesNew}
+            </div>
             </div>
             <div className={s.addMessage}>
                 <DialogsReduxForm onSubmit={onSendMessage} />

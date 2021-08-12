@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import DialogsContainers from './components/Dialogs/DialogsContainers';
 import UsersContainersHooks from './components/UsersSeach/UsersContainersHooks';
 import ProfileContainerHooks from './components/Profile/ProfileContainerHooks';
@@ -10,7 +10,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { initializationData } from './Redux/app-reducer';
 import Preloader from './utils/Preloader';
-
+import { compose } from 'redux';
+import {store} from './Redux/state-redux';
+import { Provider } from 'react-redux';
 
 class App extends React.Component {
 
@@ -23,7 +25,7 @@ class App extends React.Component {
       return <div><Preloader /></div>
     }
     return (
-      <BrowserRouter>
+      
         <div className='app-wrapper'>
           <HeaderContainer />
           <Navbar />
@@ -38,7 +40,7 @@ class App extends React.Component {
               render={() => <LoginPage />} />
           </div>
         </div>
-      </BrowserRouter>
+      
     );
   }
 }
@@ -50,5 +52,14 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { initializationData })(App)
+let AppContainer = compose( 
+  withRouter,
+  connect(mapStateToProps, { initializationData }))(App);
 
+export const AppGrand = (props) => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </BrowserRouter>
+}

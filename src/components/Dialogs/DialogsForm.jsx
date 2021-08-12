@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field, reduxForm, reset } from 'redux-form'
-import s from './Dialogs.module.css'
+
 
 
 const addDialogsForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-            <Field component={'textarea'} name={'newMessage'}/>
+            <Field component={'textarea'} name={'newMessage'} cols="60" rows="5"/>
             </div>
             <div>
             <button>Add message</button>
