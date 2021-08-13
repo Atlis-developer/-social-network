@@ -21,6 +21,7 @@ const IS_PROGRESS = 'userSeach-reducer/IS-PROGRESS'
 let defaultState = {
     users: [ ],
     pageSize: 50,
+    boxSize: 10,
     allPagesCount: 0,
     numberPage: 1,
     isFetching: false,
