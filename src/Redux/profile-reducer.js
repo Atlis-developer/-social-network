@@ -4,11 +4,15 @@ export const addPostActionCreate = (newPost) => ({ type: 'profile-reducer/ADD-PO
 export const setProfileUsersConfirm = (profile) =>({ type: 'profile-reducer/SET-PROFILE-USERS', profile });
 export const getUserStatusActionCreate = (status) =>({ type: 'profile-reducer/GET-USER-STATUS', status})
 export const updateUserStatusActionCreate = (status) =>({ type: 'profile-reducer/UPDATE-USER-STATUS', status})
+export const changeOnLOgActionCreate = (onLog) =>({ type: 'profile-reducer/CHANGE_ON_LOG', onLog})
+export const saveNewAvatar = (avatar) =>({ type: 'profile-reducer/SAVE_NEW_AVATAR', avatar})
 
 const ADD_POST = 'profile-reducer/ADD-POST';
 const SET_PROFILE_USERS = 'profile-reducer/SET-PROFILE-USERS';
 const GET_USER_STATUS = 'profile-reducer/GET-USER-STATUS';
 const UPDATE_USER_STATUS = 'profile-reducer/UPDATE-USER-STATUS';
+const CHANGE_ON_LOG = 'profile-reducer/CHANGE_ON_LOG';
+const SAVE_NEW_AVATAR = 'profile-reducer/SAVE_NEW_AVATAR';
 
 let defaultState = {
     posts: [
@@ -18,7 +22,8 @@ let defaultState = {
         { message: 'JavaScript is cool!', like: '242' },
     ],
     profile: null,
-    status: ''
+    status: '',
+    onLog: false
 }
 
 export const profileReducer = (state = defaultState, action) => {
@@ -47,15 +52,26 @@ export const profileReducer = (state = defaultState, action) => {
                 status: action.status
             };    
         }
+        case CHANGE_ON_LOG: {
+            return {
+                ...state,
+                onLog: action.onLog
+            };
+        }
+        case SAVE_NEW_AVATAR: {
+            debugger
+            return {
+                ...state,
+                profile:{ ...state.profile, photos : action.avatar}
+            };
+        }
         default:
             return state;
     }
 }
 
 export const setProfileUsers = (userID) => async (dispatch) => {
-    if (!userID) {
-        userID = 18603
-    }
+    
     let response = await profileAPI.getProfiles(userID)
     dispatch(setProfileUsersConfirm(response.data))
 }
@@ -70,6 +86,16 @@ export const updateUserStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateUserStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(updateUserStatusActionCreate(status))
+    }
+}
+
+export const addNewAvatar = (avatar) => async (dispatch) => {
+    debugger
+    let response = await profileAPI.setNewAvatar(avatar)
+    debugger
+    if (response.data.resultCode === 0) {
+        debugger
+        dispatch(saveNewAvatar(response.data.data.photos))
     }
 }
 

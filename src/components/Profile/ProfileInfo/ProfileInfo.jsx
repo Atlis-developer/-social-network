@@ -8,6 +8,14 @@ const Profileinfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
+
+    const addAvatar = (event) =>{
+        debugger
+        if (event.target.files.length){
+            props.addNewAvatar (event.target.files[0])
+        }
+    } 
+
     return (
         <div className={s.profileInfo}>
             <StatusProfileHook status={props.status}
@@ -17,6 +25,7 @@ const Profileinfo = (props) => {
                     {props.profile.photos.large != null ?
                         <img src={props.profile.photos.large} /> :
                         <img src={Ava} />}
+                        {props.onLog && <input type={'file'} onChange={addAvatar} />}
                 </div>
                 <div className={s.contact}>
                     <p>Facebook: {props.profile.contacts.facebook}</p>

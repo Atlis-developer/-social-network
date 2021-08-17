@@ -5,3 +5,11 @@ export const getProfile = (state) =>{
 export const getStatus = (state) =>{
    return state.profilePage.status;
 }
+
+export const getGrandUserId = (state) =>{
+   return state.auth.id;
+}
+
+export const getOnLog = (state) =>{
+   return state.profilePage.onLog;
+}

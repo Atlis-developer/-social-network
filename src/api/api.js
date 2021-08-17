@@ -39,6 +39,19 @@ export const profileAPI = {
     },
     updateUserStatus(status) {
         return instanse.put('/profile/status', { status: status })
+    },
+    setNewAvatar(avatar) {
+        debugger
+        const formData = new FormData();
+        formData.append("image", avatar);
+        return instanse.put(`/profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+        }).
+            then(response => {
+                return response
+            })
     }
 }
 
