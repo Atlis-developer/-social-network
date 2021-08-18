@@ -90,11 +90,8 @@ export const updateUserStatus = (status) => async (dispatch) => {
 }
 
 export const addNewAvatar = (avatar) => async (dispatch) => {
-    debugger
     let response = await profileAPI.setNewAvatar(avatar)
-    debugger
     if (response.data.resultCode === 0) {
-        debugger
         dispatch(saveNewAvatar(response.data.data.photos))
     }
 }

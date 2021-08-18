@@ -40,8 +40,10 @@ export const profileAPI = {
     updateUserStatus(status) {
         return instanse.put('/profile/status', { status: status })
     },
+    changeMyProfile(profile) {
+        return instanse.put('/profile', profile)
+    },
     setNewAvatar(avatar) {
-        debugger
         const formData = new FormData();
         formData.append("image", avatar);
         return instanse.put(`/profile/photo`, formData, {

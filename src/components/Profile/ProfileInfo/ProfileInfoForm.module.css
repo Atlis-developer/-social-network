@@ -1,0 +1,39 @@
+.form {
+    max-width: 480px;
+    border: none;
+    
+    border-radius: 3px;
+}
+.form div {
+        display: flex;
+        flex-flow: row nowrap;
+        line-height: 2em;
+        margin: 5px;}
+.form input{
+          flex: 1;
+          padding: 3px 5px;
+          font-size: 1em;
+          margin-left: 15px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+        }
+
+.form label {
+    color: #333;
+    width: 110px;
+    font-size: 1em;
+    line-height: 32px;}
+
+button {
+    margin: 0 10px;
+    padding: 4px 8px;
+    }
+
+.buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 100px
+}
