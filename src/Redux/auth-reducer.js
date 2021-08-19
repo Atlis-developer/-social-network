@@ -2,28 +2,35 @@ import { stopSubmit } from 'redux-form';
 import { headerAPI } from '../api/api';
 
 
-export const setUserDataConfirm = (id, email, login, isAuth) => ({ type: 'auth-reducer/SET_USER_DATA', data: {id, email, login, isAuth} });
-
+export const setUserDataConfirm = (id, email, login, isAuth) => ({ type: 'auth-reducer/SET_USER_DATA', data: { id, email, login, isAuth } });
+export const captchaUrlSuccess = (captchaUrl) => ({ type: 'auth-reducer/CAPTCHA_URL_SUCCESS', captchaUrl });
 
 const SET_USER_DATA = 'auth-reducer/SET_USER_DATA';
-
+const CAPTCHA_URL_SUCCESS = 'auth-reducer/CAPTCHA_URL_SUCCESS';
 
 
 let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 }
 
 export const authReducer = (state = initialState, action) => {
-   
+
     switch (action.type) {
-        case SET_USER_DATA: 
-        
+        case SET_USER_DATA:
+
             return {
                 ...state,
                 ...action.data
+            };
+        case CAPTCHA_URL_SUCCESS:
+
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl
             };
         default:
             return state;
@@ -45,7 +52,9 @@ export const loginControl = (email, password, rememberMe) => async (dispatch) =>
     let response = await headerAPI.loginControl(email, password, rememberMe)
     if (response.data.resultCode === 0) {
         dispatch(setUserData());
-    } else {
+    }else if(response.data.resultCode === 10){
+        dispatch(getCaptchaUrl());
+    }else {
         let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
         dispatch(stopSubmit('login', { _error: message }))
     }
@@ -58,19 +67,24 @@ export const loginOut = () => async (dispatch) => {
     }
 };
 
+export const getCaptchaUrl = () => async (dispatch) => {
+    let response = await headerAPI.getCaptchaUrl()
+    dispatch(captchaUrlSuccess(response))
+};
+
 /*export const setUserData = () => (dispatch) =>{
-  
+
     return headerAPI.getHeaders().then(response => {
         if (response.data.resultCode === 0){
-          
+
         let {id, email, login} = response.data.data;
         dispatch(setUserDataConfirm (id, email, login, true));
         }})
-    
+
 };
 
 export const loginControl = (email, password, rememberMe) =>{
-    
+
     return (dispatch)=>{
         headerAPI.loginControl(email, password, rememberMe).then(response => {
         if (response.data.resultCode === 0){
@@ -84,13 +98,13 @@ export const loginControl = (email, password, rememberMe) =>{
 };
 
 export const loginOut = () =>{
-    
+
     return (dispatch)=>{
         headerAPI.loginOut().then(response => {
-           
+
         if (response.data.resultCode === 0){
         dispatch(setUserDataConfirm (null, null, null, false));
         }})
     }
-    
+
 };*/

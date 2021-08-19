@@ -4,40 +4,52 @@ import { Form, Field } from "react-final-form";
 
 export const ProfileInfoForm = (props) => {
     const onSubmit = (values) => {
-        
+        props.changeMyProfile(values)
+        props.setForm(false)
     };
     return (
         <Form onSubmit={onSubmit}
         initialValues={{...props.profile}}
-            render={({ handleSubmit, form, submitting, pristine, values }) => (
+        validate={values => {
+            const errors = {}
+            if (!values.aboutMe) {
+              errors.aboutMe = 'Required'
+            }
+            return errors
+          }}
+            render={({ handleSubmit, submitError, form, submitting, pristine, values }) => (
                 <form onSubmit={handleSubmit} className={s.form}>
+                    
                     <div>
                         <label>Имя:</label><Field className={s.field} component='input' name={'fullName'} placeholder='Имя' />
                     </div>
                     <div>
-                        <label>Работаете?</label><Field className={s.field} component='input' name={'lookingForAJob'} type={'checkbox'} />
+                        <label>Ищете работу?</label><Field className={s.field} component='input' name={'lookingForAJob'} type={'checkbox'} />
                     </div>
                     <div>
                         <label>Навыки:</label><Field className={s.field} component='input' name={'lookingForAJobDescription'} placeholder='Навыки' />
                     </div>
+                    <div>
+                        <label>Про меня:</label><Field className={s.field} component='input' name={'aboutMe'} placeholder='Про меня' />
+                    </div>
                     <h3>Контакты</h3>
                     <div>
-                        <label>Facebook:</label><Field className={s.field} component='input' name={'contacts.Facebook'} placeholder='Facebook' />
+                        <label>Facebook:</label><Field className={s.field} component='input' name={'contacts.facebook'} placeholder='Facebook' />
                     </div>
                     <div>
-                        <label>Website:</label><Field className={s.field} component='input' name={'contacts.Website'} placeholder='Website' />
+                        <label>Website:</label><Field className={s.field} component='input' name={'contacts.website'} placeholder='Website' />
                     </div>
                     <div>
                         <label>vk:</label><Field className={s.field} component='input' name={'contacts.vk'} placeholder='vk' />
                     </div>
                     <div>
-                        <label>Twitter:</label><Field className={s.field} component='input' name={'contacts.Twitter'} placeholder='Twitter' />
+                        <label>Twitter:</label><Field className={s.field} component='input' name={'contacts.twitter'} placeholder='Twitter' />
                     </div>
                     <div>
-                        <label>Instagram:</label><Field className={s.field} component='input' name={'contacts.Instagram'} placeholder='Instagram' />
+                        <label>Instagram:</label><Field className={s.field} component='input' name={'contacts.instagram'} placeholder='Instagram' />
                     </div>
                     <div>
-                        <label>Youtube:</label><Field className={s.field} component='input' name={'contacts.Youtube'} placeholder='Youtube' />
+                        <label>Youtube:</label><Field className={s.field} component='input' name={'contacts.youtube'} placeholder='Youtube' />
                     </div>
                     <div>
                         <label>github:</label><Field className={s.field} component='input' name={'contacts.github'} placeholder='github' />

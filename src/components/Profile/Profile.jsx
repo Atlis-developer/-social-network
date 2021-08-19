@@ -16,7 +16,8 @@ const Profile = (props) => {
                 status={props.status}
                 updateUserStatus={props.updateUserStatus}
                 addNewAvatar={props.addNewAvatar}
-                onLog={props.onLog} />
+                onLog={props.onLog} 
+                changeMyProfile={props.changeMyProfile}/>
             <MyPostsContainers />
         </div>
 

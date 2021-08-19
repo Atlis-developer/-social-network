@@ -6,6 +6,7 @@ export const getUserStatusActionCreate = (status) =>({ type: 'profile-reducer/GE
 export const updateUserStatusActionCreate = (status) =>({ type: 'profile-reducer/UPDATE-USER-STATUS', status})
 export const changeOnLOgActionCreate = (onLog) =>({ type: 'profile-reducer/CHANGE_ON_LOG', onLog})
 export const saveNewAvatar = (avatar) =>({ type: 'profile-reducer/SAVE_NEW_AVATAR', avatar})
+export const saveErrorMessage = (message) =>({ type: 'profile-reducer/SAVE_ERROR_MESSAGE', message})
 
 const ADD_POST = 'profile-reducer/ADD-POST';
 const SET_PROFILE_USERS = 'profile-reducer/SET-PROFILE-USERS';
@@ -13,6 +14,7 @@ const GET_USER_STATUS = 'profile-reducer/GET-USER-STATUS';
 const UPDATE_USER_STATUS = 'profile-reducer/UPDATE-USER-STATUS';
 const CHANGE_ON_LOG = 'profile-reducer/CHANGE_ON_LOG';
 const SAVE_NEW_AVATAR = 'profile-reducer/SAVE_NEW_AVATAR';
+const SAVE_ERROR_MESSAGE = 'profile-reducer/SAVE_ERROR_MESSAGE';
 
 let defaultState = {
     posts: [
@@ -23,7 +25,8 @@ let defaultState = {
     ],
     profile: null,
     status: '',
-    onLog: false
+    onLog: false,
+    errorMessage: ''
 }
 
 export const profileReducer = (state = defaultState, action) => {
@@ -58,8 +61,14 @@ export const profileReducer = (state = defaultState, action) => {
                 onLog: action.onLog
             };
         }
-        case SAVE_NEW_AVATAR: {
+        case SAVE_ERROR_MESSAGE: {
             debugger
+            return {
+                ...state,
+                errorMessage: action.message
+            };
+        }
+        case SAVE_NEW_AVATAR: {
             return {
                 ...state,
                 profile:{ ...state.profile, photos : action.avatar}
@@ -86,6 +95,19 @@ export const updateUserStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateUserStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(updateUserStatusActionCreate(status))
+    }
+}
+
+export const changeMyProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.id
+    let response = await profileAPI.changeMyProfile(profile)
+    if (response.data.resultCode === 0) {
+        
+        dispatch(setProfileUsers(userId))
+    }else {
+        debugger
+        let message = response.data.messages[0]
+        dispatch(saveErrorMessage(message))
     }
 }
 

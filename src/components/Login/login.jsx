@@ -32,7 +32,7 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-const Login = (props) => {
+const LoginPage = (props) => {
     
     if (props.isAuth){
         return <Redirect to={'/profile'}/>
@@ -58,4 +58,4 @@ let mapStateToProps = (state)=>{
     }
 }
 
-export default connect (mapStateToProps, {loginControl})(Login) 
+export default connect (mapStateToProps, {loginControl})(LoginPage) 

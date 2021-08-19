@@ -5,7 +5,7 @@ import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import UsersContainersHooks from './components/UsersSeach/UsersContainersHooks';
 import ProfileContainerHooks from './components/Profile/ProfileContainerHooks';
 import HeaderContainer from './components/Header/HeaderContainer';
-import LoginPage from './components/Login/login';
+import LoginForm from './components/Login/loginForm';
 import React from 'react';
 import { connect } from 'react-redux';
 import { initializationData } from './Redux/app-reducer';
@@ -43,7 +43,7 @@ class App extends React.Component {
             <Route path='/users'
               render={() => <UsersContainersHooks />} />
             <Route path='/login'
-              render={() => <LoginPage />} />
+              render={() => <LoginForm />} />
           </div>
         </div>
       

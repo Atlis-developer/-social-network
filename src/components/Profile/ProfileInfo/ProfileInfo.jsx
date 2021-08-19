@@ -20,7 +20,6 @@ const Profileinfo = (props) => {
             props.addNewAvatar(event.target.files[0])
         }
     }
-
     return (
         <div className={s.profileInfo}>
             <StatusProfileHook status={props.status}
@@ -33,7 +32,11 @@ const Profileinfo = (props) => {
                     {props.onLog && <input type={'file'} onChange={addAvatar} />}
                 </div>
                 <div>
-                    {form ? <ProfileInfoForm {...props} profile={props.profile} /> :
+                    {form ? <ProfileInfoForm {...props}
+                     profile={props.profile} 
+                     changeMyProfile={props.changeMyProfile}
+                     errorMessage={props.errorMessage}
+                     setForm={setForm}/> :
                         <ProfileInfoData {...props} profile={props.profile} />}
                     {props.onLog && !form ?
                         <input type={'button'} value={'Изменить'} onClick={() => { setForm(true) }} /> :

@@ -15,7 +15,7 @@ export const Element = Element => ({input, meta, ...props}) =>{
 
 export const ElementInput = ElementInput => ({input, meta, ...props}) =>{
   let hasError = meta.touched && meta.error
- 
+ debugger
      return (
          <div className={s.form}>
              <input className={hasError? s.error: ''} {...input} {...props}/>

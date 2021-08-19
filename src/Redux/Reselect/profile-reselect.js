@@ -13,3 +13,7 @@ export const getGrandUserId = (state) =>{
 export const getOnLog = (state) =>{
    return state.profilePage.onLog;
 }
+
+export const getErrorMessage = (state) =>{
+   return state.profilePage.errorMessage;
+}

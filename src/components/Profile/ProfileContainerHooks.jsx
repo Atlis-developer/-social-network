@@ -1,11 +1,11 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { setProfileUsers, getUserStatus, addNewAvatar, updateUserStatus, changeOnLOgActionCreate } from '../../Redux/profile-reducer';
+import { setProfileUsers, getUserStatus, addNewAvatar, updateUserStatus, changeOnLOgActionCreate, changeMyProfile } from '../../Redux/profile-reducer';
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
-import { getGrandUserId, getOnLog, getProfile, getStatus } from '../../Redux/Reselect/profile-reselect';
+import { getGrandUserId, getOnLog, getProfile, getStatus, getErrorMessage } from '../../Redux/Reselect/profile-reselect';
 import { useEffect } from 'react';
 
 
@@ -46,6 +46,7 @@ const ProfileContainerHooks = (props) => {
         updateUserStatus={props.updateUserStatus}
         onLog={props.onLog}
         addNewAvatar={props.addNewAvatar}
+        changeMyProfile={props.changeMyProfile}
     />
 
 }
@@ -56,13 +57,14 @@ let mapStateToProps = (state) => {
         profile: getProfile(state),
         status: getStatus(state),
         id: getGrandUserId(state),
-        onLog: getOnLog(state)
+        onLog: getOnLog(state),
+        errorMessage: getErrorMessage (state)
     }
 }
 
 
 
 export default compose(connect(mapStateToProps, { setProfileUsers, getUserStatus, updateUserStatus, 
-    changeOnLOgActionCreate, addNewAvatar }), withRouter, withAuthRedirect)(ProfileContainerHooks)
+    changeOnLOgActionCreate, addNewAvatar, changeMyProfile }), withRouter, withAuthRedirect)(ProfileContainerHooks)
 
 

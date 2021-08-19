@@ -28,6 +28,7 @@ export const profileAPI = {
     getProfiles(userID) {
         return instanse.get(`profile/${userID}`).
             then(response => {
+                
                 return response
             })
     },
@@ -70,8 +71,16 @@ export const headerAPI = {
     },
     loginOut() {
         return instanse.delete('auth/login')
+    },
+    getCaptchaUrl() {
+        return instanse.get('security/get-captcha-url').
+        then(response =>{
+            return response
+        })
     }
 }
+
+
 
 /*export const followersAPI = {
     addFollowers() {
