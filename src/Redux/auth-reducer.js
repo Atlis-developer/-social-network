@@ -3,18 +3,20 @@ import { headerAPI } from '../api/api';
 
 
 export const setUserDataConfirm = (id, email, login, isAuth) => ({ type: 'auth-reducer/SET_USER_DATA', data: { id, email, login, isAuth } });
-export const captchaUrlSuccess = (captchaUrl) => ({ type: 'auth-reducer/CAPTCHA_URL_SUCCESS', captchaUrl });
+export const captchaUrlSuccess = (url) => ({ type: 'auth-reducer/CAPTCHA_URL_SUCCESS', url });
+export const haveSomeError = (message) => ({ type: 'auth-reducer/HAVE_SOME_ERROR', message });
 
 const SET_USER_DATA = 'auth-reducer/SET_USER_DATA';
 const CAPTCHA_URL_SUCCESS = 'auth-reducer/CAPTCHA_URL_SUCCESS';
-
+const HAVE_SOME_ERROR = 'auth-reducer/HAVE_SOME_ERROR';
 
 let initialState = {
     id: null,
     email: null,
     login: null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: null,
+    error: ''
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -27,10 +29,14 @@ export const authReducer = (state = initialState, action) => {
                 ...action.data
             };
         case CAPTCHA_URL_SUCCESS:
-
             return {
                 ...state,
-                captchaUrl: action.captchaUrl
+                captchaUrl: action.url
+            };
+        case HAVE_SOME_ERROR:
+            return {
+                ...state,
+                error: action.message
             };
         default:
             return state;
@@ -39,24 +45,28 @@ export const authReducer = (state = initialState, action) => {
 
 export const setUserData = () => async (dispatch) => {
     let response = await headerAPI.getHeaders()
-
     if (response.data.resultCode === 0) {
-
         let { id, email, login } = response.data.data;
         dispatch(setUserDataConfirm(id, email, login, true));
     }
 
 };
 
-export const loginControl = (email, password, rememberMe) => async (dispatch) => {
-    let response = await headerAPI.loginControl(email, password, rememberMe)
+export const loginControl = (email, password, rememberMe, captcha) => async (dispatch) => {
+    let response = await headerAPI.loginControl(email, password, rememberMe, captcha)
     if (response.data.resultCode === 0) {
         dispatch(setUserData());
+        dispatch(captchaUrlSuccess(null));
+
     }else if(response.data.resultCode === 10){
-        dispatch(getCaptchaUrl());
-    }else {
         let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
-        dispatch(stopSubmit('login', { _error: message }))
+        dispatch(haveSomeError({message}))
+        dispatch(getCaptchaUrl());
+        dispatch(haveSomeError(''))
+    }
+    else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+        dispatch(haveSomeError({message}))
     }
 };
 
@@ -69,7 +79,9 @@ export const loginOut = () => async (dispatch) => {
 
 export const getCaptchaUrl = () => async (dispatch) => {
     let response = await headerAPI.getCaptchaUrl()
-    dispatch(captchaUrlSuccess(response))
+    let url = response.data.url
+    
+    dispatch(captchaUrlSuccess(url))
 };
 
 /*export const setUserData = () => (dispatch) =>{

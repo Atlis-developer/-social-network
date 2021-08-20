@@ -58,7 +58,8 @@ let mapStateToProps = (state) => {
         status: getStatus(state),
         id: getGrandUserId(state),
         onLog: getOnLog(state),
-        errorMessage: getErrorMessage (state)
+        errorMessage: getErrorMessage (state),
+        
     }
 }
 

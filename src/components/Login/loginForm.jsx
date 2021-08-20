@@ -6,13 +6,13 @@ import s from './loginForm.module.css'
 import {loginControl} from '../../Redux/auth-reducer'
 
 const LoginForm = (props) => {
-debugger
     if (props.isAuth){
         return <Redirect to={'/profile'}/>
     }
     const onSubmit = (values) =>{
-        props.loginControl(values.email, values.password, values.rememberMe)
+        props.loginControl(values.email, values.password, values.rememberMe, values.captcha)
     }
+    
     return (
         <div className={s.wrapper}>
             <h1>Login</h1>
@@ -57,6 +57,25 @@ debugger
                                 </div>
                             )}
                         </Field>
+                        {props.error.message && 
+                        <div className={s.error}>
+                        {props.error.message}
+                        </div>}
+                        
+                        {props.captchaUrl &&
+                        <span className={s.captcha}>
+                        <img src={props.captchaUrl}/>
+                        <Field name="captcha">
+                            {({ input, meta }) => (
+                                <div>
+                                    <label>Symbols:</label>
+                                    <input {...input} type="text"  />
+                                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                                </div>
+                            )}
+                        </Field>
+                        </span>}
+                        
                         <div className={s.buttons}>
                             <button type="submit" disabled={submitting}>
                                 Submit
@@ -80,6 +99,8 @@ const mapStateToProps = (state) =>{
     
     return{
         isAuth: state.auth.isAuth,
+        error: state.auth.error,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

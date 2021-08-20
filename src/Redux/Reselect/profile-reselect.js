@@ -17,3 +17,4 @@ export const getOnLog = (state) =>{
 export const getErrorMessage = (state) =>{
    return state.profilePage.errorMessage;
 }
+

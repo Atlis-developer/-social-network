@@ -65,9 +65,9 @@ export const headerAPI = {
                 return response
             })
     },
-    loginControl(email, password, rememberMe=true) {
+    loginControl(email, password, rememberMe, captcha) {
         
-        return instanse.post('auth/login', { email, password, rememberMe })
+        return instanse.post('auth/login', { email, password, rememberMe, captcha })
     },
     loginOut() {
         return instanse.delete('auth/login')
