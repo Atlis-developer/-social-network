@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 //import DialogsContainers from './components/Dialogs/DialogsContainers';
 import UsersContainersHooks from './components/UsersSeach/UsersContainersHooks';
 import ProfileContainerHooks from './components/Profile/ProfileContainerHooks';
@@ -11,11 +11,12 @@ import { connect } from 'react-redux';
 import { initializationData } from './Redux/app-reducer';
 import Preloader from './utils/Preloader';
 import { compose } from 'redux';
-import {store} from './Redux/state-redux';
+import { store } from './Redux/state-redux';
 import { Provider } from 'react-redux';
 import { Suspense } from 'react';
+import { NotFound } from './components/NotFound';
 
-const DialogsContainers = React.lazy(()=> import('./components/Dialogs/DialogsContainers'));
+const DialogsContainers = React.lazy(() => import('./components/Dialogs/DialogsContainers'));
 
 
 class App extends React.Component {
@@ -25,28 +26,30 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.props.initialization) { 
+    if (!this.props.initialization) {
       return <div><Preloader /></div>
     }
     return (
-      
+      <Switch>
         <div className='app-wrapper'>
           <HeaderContainer />
           <Navbar />
           <div className='app-wrapper-content'>
+            <Route exact path="/"><Redirect to="/profile" /></Route>
             <Route path='/profile/:userId?'
               render={() => <ProfileContainerHooks />} />
-              <Suspense fallback={<Preloader/>}>
-            <Route path='/dialogs'
-              render={() => <DialogsContainers />} />
-              </Suspense>
+            <Suspense fallback={<Preloader />}>
+              <Route path='/dialogs'
+                render={() => <DialogsContainers />} />
+            </Suspense>
             <Route path='/users'
               render={() => <UsersContainersHooks />} />
             <Route path='/login'
               render={() => <LoginForm />} />
           </div>
         </div>
-      
+        
+      </Switch>
     );
   }
 }
@@ -58,7 +61,7 @@ let mapStateToProps = (state) => {
   }
 }
 
-let AppContainer = compose( 
+let AppContainer = compose(
   withRouter,
   connect(mapStateToProps, { initializationData }))(App);
 
