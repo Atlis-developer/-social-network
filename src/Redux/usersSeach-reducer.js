@@ -37,6 +37,7 @@ export const usersReducer = (state = defaultState, action) => {
                 ...state,
                 users: state.users.map(u =>{
                     if (u.id === action.userId){
+                        
                         return {...u, friend: true}
                     }return u
                 })
@@ -53,7 +54,11 @@ export const usersReducer = (state = defaultState, action) => {
         case SET_USERS: {
             return {
                 ...state,
-                users: action.users
+                users: action.users.map(u =>{
+                    if(u.followed){
+                        return {...u, friend: true}
+                    }return u
+                })
             }
         };
         case SET_CURRENT_PAGE : {
@@ -74,7 +79,7 @@ export const usersReducer = (state = defaultState, action) => {
             }
         };
         case IS_PROGRESS : {
-            
+          
             return {
             ...state, 
             isProgress: action.isFetching ?
@@ -97,10 +102,13 @@ export const userThunkCreator = (page, pageSize) => async (dispatch) =>{
 }
 
 export const follow = (userId) => async (dispatch) => {
+ 
     dispatch(funcProgress(true, userId));
     let response = await usersAPI.followFriends(userId)
     if (response.data.resultCode === 0) {
+     
         dispatch(followConfirm(userId));
+       
     } dispatch(funcProgress(false, userId));
 }
 

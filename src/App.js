@@ -14,7 +14,6 @@ import { compose } from 'redux';
 import { store } from './Redux/state-redux';
 import { Provider } from 'react-redux';
 import { Suspense } from 'react';
-import { NotFound } from './components/NotFound';
 
 const DialogsContainers = React.lazy(() => import('./components/Dialogs/DialogsContainers'));
 
@@ -48,7 +47,6 @@ class App extends React.Component {
               render={() => <LoginForm />} />
           </div>
         </div>
-        
       </Switch>
     );
   }

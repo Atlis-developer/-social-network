@@ -31,7 +31,7 @@ const Profileinfo = (props) => {
                         <img src={Ava} />}
                     {props.onLog && <input type={'file'} onChange={addAvatar} />}
                 </div>
-                <div>
+                <div className={s.changeProfile}>
                     {form ? <ProfileInfoForm {...props}
                      profile={props.profile} 
                      changeMyProfile={props.changeMyProfile}

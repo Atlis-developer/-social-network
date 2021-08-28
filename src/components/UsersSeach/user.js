@@ -6,7 +6,6 @@ import Ava from '../../assets/image/ava.jpg'
 
 const User = (props) => {
 
-
     return <div>
         {props.users.map(u =>
             <div key={u.id}>

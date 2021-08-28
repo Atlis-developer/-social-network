@@ -19,3 +19,7 @@
 .information{
     padding-left: 20px;
 }
+.changeProfile input{
+    cursor: pointer;
+}
+
