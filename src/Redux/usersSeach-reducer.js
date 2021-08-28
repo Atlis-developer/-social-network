@@ -102,13 +102,10 @@ export const userThunkCreator = (page, pageSize) => async (dispatch) =>{
 }
 
 export const follow = (userId) => async (dispatch) => {
- 
     dispatch(funcProgress(true, userId));
     let response = await usersAPI.followFriends(userId)
     if (response.data.resultCode === 0) {
-     
         dispatch(followConfirm(userId));
-       
     } dispatch(funcProgress(false, userId));
 }
 

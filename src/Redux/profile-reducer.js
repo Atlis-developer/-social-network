@@ -62,7 +62,7 @@ export const profileReducer = (state = defaultState, action) => {
             };
         }
         case SAVE_ERROR_MESSAGE: {
-            debugger
+            
             return {
                 ...state,
                 errorMessage: action.message
