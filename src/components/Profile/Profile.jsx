@@ -9,9 +9,7 @@ const Profile = (props) => {
 
     return (
         <div className={s.content}>
-            <div className={s.backImage}>
-                <img src={Ava_Big} />
-            </div>
+            
             <Profileinfo profile={props.profile}
                 status={props.status}
                 updateUserStatus={props.updateUserStatus}

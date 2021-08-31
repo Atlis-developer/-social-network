@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './StatusProfile.module.css'
 
 
@@ -9,6 +9,8 @@ class ProfileStatus extends React.Component {
     editMode: false, 
     status: ''
     }
+
+
 
 activeEditMode = () =>{
     this.setState({ editMode : true})}

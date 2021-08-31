@@ -1,15 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import s from './Header.module.css'
+import Logo from '../../assets/image/dolphin-logo.jpg'
+
 
 const Header = (props) =>{
+
+    
     return(
         <header className={s.header}>
-        <img src='https://png.pngtree.com/element_our/png/20181022/dolphin-logo-with-neon-sign-effect.-vector-illustration-png_199432.jpg'></img>
+        <NavLink to={'/profile'}>
+        <img src={Logo}></img>
+        </NavLink>
         <div className={s.loginBlock}>
         {props.isAuth?
-        <div>{props.login} - <button onClick={props.loginOut}>Login Out</button></div>:
-        <NavLink to={'/login'}>Login</NavLink>}
+        <div className={s.login}>{props.login} - <button onClick={props.loginOut}>Login Out</button></div>:
+        <NavLink to={'/login'} className={s.nav}>Login</NavLink>}
         </div>
         </header>
     )

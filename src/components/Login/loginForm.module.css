@@ -35,6 +35,7 @@
 }
 .wrapper label {
             display: block;
+            color: white;
 }
 .wrapper input {
               margin-right: 3px;
@@ -54,6 +55,7 @@
      
 h1{
     text-align: center;
+    color: white;
 }    
 
 .error{

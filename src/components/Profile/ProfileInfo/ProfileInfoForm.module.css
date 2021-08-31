@@ -21,7 +21,8 @@
     color: #333;
     width: 110px;
     font-size: 1em;
-    line-height: 32px;}
+    line-height: 32px;
+    color: white;}
 
 button {
     margin: 0 10px;

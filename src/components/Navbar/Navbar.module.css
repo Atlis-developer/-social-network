@@ -3,7 +3,9 @@
     }
   
 .navbar{
-  background-color: lightblue;
+  background-image: url(../../assets/image/navbar9.jpg);
+  background-attachment: fixed;
+  
 }
 
   .item{

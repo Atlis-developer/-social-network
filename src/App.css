@@ -4,8 +4,12 @@
   'h h'
   'n c';
   grid-template-columns: 2fr 10fr;
+  
 }
 .app-wrapper-content{
     grid-area: c;
-    background-color: mediumturquoise;
+    background-image: url(./assets/image/profile.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
     }

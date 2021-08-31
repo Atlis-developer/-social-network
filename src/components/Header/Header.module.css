@@ -1,6 +1,6 @@
 .header{
     grid-area: h;
-    background-color: aquamarine;
+    background: linear-gradient(to right, #161518, #09128d);
 }
     .header img{
       width: 100px;
@@ -10,4 +10,12 @@
 .loginBlock{
   float: right;
   margin-right: 20px;
+}
+
+.login {
+  color: white;
+}
+
+.nav {
+  color: white;
 }

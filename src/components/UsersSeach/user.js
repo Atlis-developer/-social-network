@@ -28,7 +28,7 @@ const User = (props) => {
                     </div>
 
                 </span>
-                <span>
+                <span className={s.basicInform}>
                     <div>{u.name}</div>
                     <div> {u.status}</div>
                     <div>{'u.location.country'}</div>
