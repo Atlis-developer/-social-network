@@ -43,40 +43,6 @@ const mapStateToProps = (state) => {
 
 
 export default compose(connect(mapStateToProps, { follow, unFollow, currentPage, 
-    funcProgress, userThunkCreator }), withRouter, withAuthRedirect) (UsersContainersHooks)
+    funcProgress, userThunkCreator }), withRouter) (UsersContainersHooks)
 
     
-/*this.props.funcFetching(true)
-        usersAPI.getUsers(this.page, this.props.usersPage.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.totalPage(data.totalCount)
-            this.props.funcFetching(false)
-
-        })
-    }
-
-    */
-
- /*   getCurrentPage = (page) => {
-        this.props.currentPage(page)
-        this.props.funcFetching(true)
-        
-        usersAPI.getUsers(page, this.props.usersPage.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.funcFetching(false)
-            
-        })*/
-    
-
-/*const mapDispatchToPops = (dispatch) => {
-
-    return {
-        follow: (userId) => { dispatch(addToFriensdActionCreate(userId)) },
-        unFollow: (userId) => { dispatch(deleteFromFriendsActionCreate(userId)) },
-        setUsers: (users) => { dispatch(addNewUsers(users)) },
-        currentPage: (page) => { dispatch(selectionPage(page)) },
-        totalPage: (pages) => { dispatch(totalPage(pages)) },
-        getCurrentPage: (p) => { dispatch(this.getCurrentPage(p)) },
-        funcFetching: (isFetching) => { dispatch(funcFetching(isFetching)) }
-    }
-}*/

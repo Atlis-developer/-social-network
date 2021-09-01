@@ -30,7 +30,7 @@ useEffect (() =>{
 
     return (
         <div className={s.status}>
-            {editMode ?
+            {editMode && props.onLog ?
                 <input onChange={statusChange} autoFocus={true} onBlur={deactiveEditMode} value={status} /> :
                 <span onDoubleClick={activeEditMode}>{props.status || '-*-*-*-*-'}</span>
             }

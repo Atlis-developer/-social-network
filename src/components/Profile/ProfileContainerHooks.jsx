@@ -66,6 +66,6 @@ let mapStateToProps = (state) => {
 
 
 export default compose(connect(mapStateToProps, { setProfileUsers, getUserStatus, updateUserStatus, 
-    changeOnLOgActionCreate, addNewAvatar, changeMyProfile }), withRouter, withAuthRedirect)(ProfileContainerHooks)
+    changeOnLOgActionCreate, addNewAvatar, changeMyProfile }), withRouter)(ProfileContainerHooks)
 
 

@@ -25,7 +25,8 @@ const Profileinfo = (props) => {
     return (
         <div className={s.profileInfo}>
             <StatusProfileHook status={props.status}
-                updateUserStatus={props.updateUserStatus} />
+                updateUserStatus={props.updateUserStatus}
+                onLog={props.onLog} />
             <span className={s.profile}>
                 <div className={s.avatar}>
                     {props.profile.photos.large != null ?
