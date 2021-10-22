@@ -118,29 +118,3 @@ export const addNewAvatar = (avatar) => async (dispatch) => {
     }
 }
 
-/*export const setProfileUsers = (userID) =>{
-    return (dispatch)=>{
-        if (!userID){
-            userID = 18603
-        }
-        profileAPI.getProfiles(userID).then(data => {
-            dispatch(setProfileUsersConfirm(data))})
-    }
-}
-
-export const getUserStatus = (userID) =>{
-    return (dispatch)=>{
-        profileAPI.getUserStatus(userID).then(data=>{
-            dispatch (getUserStatusActionCreate(data))})
-    }
-}
-
-export const updateUserStatus = (status) =>{
-    return (dispatch) =>{
-        profileAPI.updateUserStatus(status).then(response=>{
-            if(response.data.resultCode === 0){
-                dispatch (updateUserStatusActionCreate(status))
-            }
-        })
-    }
-}*/

@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { getDialogs, getMessages } from '../../Redux/Reselect/dialogs-reselect';
 
 
-const mapDispatchToPops = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         sendMessage: (newMessage) => { dispatch(addMessageToMessages(newMessage)) },
     }
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default compose (connect(mapStateToProps, mapDispatchToPops), withRouter,withAuthRedirect) (Dialogs)
+export default compose (connect(mapStateToProps, mapDispatchToProps), withRouter,withAuthRedirect) (Dialogs)
